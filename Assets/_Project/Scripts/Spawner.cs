@@ -9,14 +9,8 @@ public class Spawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-
-            
-
-
+            GameObject go = MyPooling.Instance.GetPoolObj();
+            go.SetActive(true);          
         }
-
-
     }
-
-
 }

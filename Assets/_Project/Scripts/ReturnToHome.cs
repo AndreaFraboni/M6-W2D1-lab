@@ -5,9 +5,16 @@ using UnityEngine;
 public class ReturnToHome : MonoBehaviour
 {
 
-    private void Start()
+    private void OnEnable()
     {
+        StartCoroutine(WaitToreturn());
+    }
 
+    IEnumerator WaitToreturn()
+    {
+        yield return new WaitForSeconds(3f);
+
+        MyPooling.Instance.PutPoolObj(gameObject);
     }
 
 }

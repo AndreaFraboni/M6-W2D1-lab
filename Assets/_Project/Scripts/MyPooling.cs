@@ -9,30 +9,34 @@ public class MyPooling : MonoSingleton<MyPooling>
 
     Queue<GameObject> pool = new Queue<GameObject>();
 
-    private void Awake()
+    private void Start()
     {
-        CreatePool();
+        CreatePool(_poolSize);
     }
 
-    public void CreatePool()
+    public void CreatePool(int num)
     {
-        for (int i = 0; i < _poolSize; i++)
+        for (int i = 0; i < num; i++)
         {
             GameObject obj = Instantiate(_prefab, transform);
             obj.SetActive(false);
-
-            pool.Enqueue(obj); 
+            pool.Enqueue(obj);
         }
     }
 
     public GameObject GetPoolObj()
     {
+        if (pool.Count == 0)
+        {
+            CreatePool(1);
+        }
         return pool.Dequeue();
     }
 
     public void PutPoolObj(GameObject obj)
     {
         pool.Enqueue(obj);
+        obj.SetActive(false);
     }
 
 
