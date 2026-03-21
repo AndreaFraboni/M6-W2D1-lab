@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UIController : MonoSingleton<UIController>
+public class UIController : GenericSingleton<UIController>
 {
     public GameObject PauseGamePanel;
     public GameObject GameOverPanel;
